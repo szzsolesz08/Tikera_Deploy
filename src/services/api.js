@@ -68,7 +68,7 @@ async function fetchAPI(endpoint, options = {}) {
 
 export const authAPI = {
   login: async (email, password) => {
-    const response = await fetchAPI('/login', {
+    const response = await fetchAPI('api/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
@@ -82,7 +82,7 @@ export const authAPI = {
   },
   
   register: async (name, email, password, password_confirmation) => {
-    const response = await fetchAPI('/register', {
+    const response = await fetchAPI('api/register', {
       method: 'POST',
       body: JSON.stringify({
         name,
@@ -102,7 +102,7 @@ export const authAPI = {
   
   logout: async () => {
     try {
-      await fetchAPI('/logout', { method: 'POST' });
+      await fetchAPI('api/logout', { method: 'POST' });
     } finally {
       localStorage.removeItem('tikera_auth_token');
       localStorage.removeItem('tikera_user');
@@ -129,15 +129,15 @@ export const authAPI = {
 
 export const movieAPI = {
   getMovies: async () => {
-    return await fetchAPI('/movies');
+    return await fetchAPI('api/movies');
   },
   
   getMovie: async (id) => {
-    return await fetchAPI(`/movies/${id}`);
+    return await fetchAPI(`api/movies/${id}`);
   },
   
   getMoviesByWeek: async (weekNumber) => {
-    return await fetchAPI(`/movies/week?week_number=${weekNumber}`);
+    return await fetchAPI(`api/movies/week?week_number=${weekNumber}`);
   },
   
 
@@ -146,10 +146,10 @@ export const movieAPI = {
     try {
       let weekMovies;
       try {
-        weekMovies = await fetchAPI(`/movies/week?week_number=${weekNumber}`);
+        weekMovies = await fetchAPI(`api/movies/week?week_number=${weekNumber}`);
       } catch (weekError) {
         console.error('Error fetching weekly movies, falling back to all movies:', weekError);
-        weekMovies = await fetchAPI('/movies');
+        weekMovies = await fetchAPI('api/movies');
       }
       
       if (!Array.isArray(weekMovies)) {
@@ -192,11 +192,11 @@ export const movieAPI = {
   },
   
   getScreenings: async () => {
-    return await fetchAPI('/screenings');
+    return await fetchAPI('api/screenings');
   },
 
   getScreening: async (screeningId) => {
-    return await fetchAPI(`/screenings/${screeningId}`);
+    return await fetchAPI(`api/screenings/${screeningId}`);
   },
 
   createBooking: async (screeningId, bookingData) => {
@@ -222,60 +222,60 @@ export const movieAPI = {
         })
     };
     
-    return await fetchAPI('/bookings', {
+    return await fetchAPI('api/bookings', {
       method: 'POST',
       body: JSON.stringify(bookingPayload),
     });
   },
   
   getBookings: async () => {
-    return await fetchAPI('/bookings');
+    return await fetchAPI('api/bookings');
   },
   
   getBooking: async (bookingId) => {
-    return await fetchAPI(`/bookings/${bookingId}`);
+    return await fetchAPI(`api/bookings/${bookingId}`);
   },
 
   createMovie: async (movieData) => {
-    return await fetchAPI('/movies', {
+    return await fetchAPI('api/movies', {
       method: 'POST',
       body: JSON.stringify(movieData),
     });
   },
   
   updateMovie: async (movieId, movieData) => {
-    return await fetchAPI(`/movies/${movieId}`, {
+    return await fetchAPI(`api/movies/${movieId}`, {
       method: 'PUT',
       body: JSON.stringify(movieData),
     });
   },
   
   getRooms: async () => {
-    return await fetchAPI('/rooms');
+    return await fetchAPI('api/rooms');
   },
   
   createScreening: async (screeningData) => {
-    return await fetchAPI('/screenings', {
+    return await fetchAPI('api/screenings', {
       method: 'POST',
       body: JSON.stringify(screeningData),
     });
   },
   
   updateScreening: async (screeningId, screeningData) => {
-    return await fetchAPI(`/screenings/${screeningId}`, {
+    return await fetchAPI(`api/screenings/${screeningId}`, {
       method: 'PUT',
       body: JSON.stringify(screeningData)
     });
   },
   
   deleteMovie: async (movieId) => {
-    return await fetchAPI(`/movies/${movieId}`, {
+    return await fetchAPI(`api/movies/${movieId}`, {
       method: 'DELETE'
     });
   },
   
   deleteScreening: async (screeningId) => {
-    return await fetchAPI(`/screenings/${screeningId}`, {
+    return await fetchAPI(`api/screenings/${screeningId}`, {
       method: 'DELETE'
     });
   },
