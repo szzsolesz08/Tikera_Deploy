@@ -1,0 +1,268 @@
+.movie-details-container {
+  width: 100%;
+  height: auto;
+  position: relative;
+  right: 0;
+  top: 0;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+@media (min-width: 768px) {
+  .movie-details-container {
+    width: 50vw;
+    height: calc(100vh - 80px);
+    position: fixed;
+    top: 80px;
+  }
+}
+
+.movie-details-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.movie-details-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.movie-details-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.movie-details-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 100%;
+}
+
+.movie-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .movie-header {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.movie-poster {
+  width: 200px;
+  height: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .movie-poster {
+    width: 140px;
+    height: 210px;
+  }
+}
+
+.movie-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movie-title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+  text-align: center;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .movie-title-section {
+    text-align: left;
+    width: auto;
+  }
+}
+
+.movie-title-section h2 {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .movie-title-section h2 {
+    font-size: 1.8rem;
+  }
+}
+
+.movie-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+  .movie-meta {
+    justify-content: flex-start;
+  }
+}
+
+.movie-meta span {
+  position: relative;
+}
+
+.movie-meta span:not(:last-child)::after {
+  content: "•";
+  position: absolute;
+  right: -10px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.movie-description {
+  margin-top: 4px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .movie-description {
+    text-align: left;
+  }
+}
+
+.movie-description p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+  max-height: none;
+  overflow: visible;
+}
+
+@media (min-width: 768px) {
+  .movie-description p {
+    max-height: 4.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+}
+
+.screening-times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.time-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.time-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.time-button.active {
+  background: #7cb342;
+  color: white;
+  font-weight: 500;
+}
+
+.time-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.time-button.full {
+  background: rgba(255, 0, 0, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.time-button.full:hover {
+  background: rgba(255, 0, 0, 0.15);
+}
+
+.no-selection {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.1rem;
+}
+
+.screen-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.screen-label {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.screen-bar {
+  width: 80%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.seat-status {
+  display: flex;
+  gap: 16px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-dot.available {
+  background: #7cb342;
+}
+
+.status-dot.booked {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.status-item span {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+}

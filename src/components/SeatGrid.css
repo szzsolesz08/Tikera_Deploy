@@ -1,0 +1,113 @@
+.seats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  flex: 1;
+  min-height: 0;
+}
+
+.screen-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.screen-bar {
+  width: 80%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.seats-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.seat-row {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.seat {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 3px;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.seat.available {
+  background: rgba(124, 179, 66, 0.2);
+}
+
+.seat.available:hover:not(:disabled) {
+  background: rgba(124, 179, 66, 0.4);
+}
+
+.seat.selected {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.seat.selected:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.seat.booked {
+  background: rgba(255, 255, 255, 0.1);
+  cursor: not-allowed;
+}
+
+.seat:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.seat-labels {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  padding-bottom: 8px;
+}
+
+.seat-status {
+  display: flex;
+  gap: 16px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-dot.available {
+  background: #7cb342;
+}
+
+.status-dot.booked {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.status-item span {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+}
