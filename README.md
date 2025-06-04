@@ -33,7 +33,7 @@ Tikera is a React-based front-end application that allows users to browse movies
 
 - Node.js (v14+)
 - npm or yarn
-- Backend API server (Laravel-based)
+- Backend API server (Laravel-based) [Tikera Server](https://github.com/szzsolesz08/Tikera_Server)
 
 ### Setup
 
@@ -101,11 +101,3 @@ The application communicates with a RESTful API using the following endpoints:
 - Material-UI - UI component library
 - Fetch API - HTTP requests
 - Local Storage - Client-side data persistence
-
-## License
-
-[License information]
-
-## Acknowledgements
-
-[Any acknowledgements or credits]
