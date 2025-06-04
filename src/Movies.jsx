@@ -46,46 +46,28 @@ function Movies({ initialWeek }) {
       
       try {
         const englishDay = weekdayMap[selectedDay] || selectedDay;
-        console.log(`Fetching movies for week ${selectedWeek}, day: ${englishDay}`);
         
         const allWeekMovies = await movieAPI.getMoviesByWeek(selectedWeek);
-        console.log('All movies for week before filtering:', allWeekMovies);
         
         let hasAnyScreenings = false;
         if (Array.isArray(allWeekMovies)) {
           allWeekMovies.forEach(movie => {
             if (Array.isArray(movie.screenings) && movie.screenings.length > 0) {
               hasAnyScreenings = true;
-              console.log(`Movie ${movie.title} has ${movie.screenings.length} screenings`);
               if (movie.screenings[0] && movie.screenings[0].start_time) {
                 const date = new Date(movie.screenings[0].start_time);
-                console.log(`First screening date: ${date}, JS day: ${date.getDay()}, ISO day: ${date.getDay() === 0 ? 7 : date.getDay()}`);
               }
             }
           });
         }
-        console.log('Has any screenings:', hasAnyScreenings);
         
         const data = await movieAPI.getMoviesByWeekAndDay(selectedWeek, englishDay);
-        console.log(`Received data from API for week ${selectedWeek}:`, data);
         
         if (!Array.isArray(data)) {
           console.error('API did not return an array. Received:', data);
           setError('Invalid data format received from server.');
           setMovies([]);
           return;
-        }
-        
-        console.log(`Filtered movies for week ${selectedWeek}, day ${englishDay}:`, data.length);
-        
-        if (data.length > 0) {
-          console.log('First movie data:', {
-            title: data[0].title,
-            image_path: data[0].image_path,
-            screenings: data[0].screenings ? data[0].screenings.length : 0
-          });
-        } else {
-          console.log('No movies found for the selected criteria');
         }
         
         setMovies(data);
@@ -159,12 +141,12 @@ function Movies({ initialWeek }) {
                       } 
                       alt={movie.title}
                       onError={(e) => {
-                        console.log('Image failed to load:', e.target.src);
+                        console.error('Image failed to load:', e.target.src);
                         const apiUrl = import.meta.env.VITE_API_URL;
                         const normalizedSrc = e.target.src.startsWith(apiUrl)
                           ? e.target.src.substring(apiUrl.length)
                           : e.target.src;
-                        console.log('Normalized path:', normalizedSrc);
+                        console.error('Normalized path:', normalizedSrc);
                         e.target.style.display = 'none';
                       }}
                       style={{ maxWidth: '100%', maxHeight: '200px' }}

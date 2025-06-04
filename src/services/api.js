@@ -1,5 +1,5 @@
 const API_URL = import.meta.env.VITE_API_URL;
-
+console.log(API_URL);
 function getNumericDayIndex(dayName) {
   const dayMap = {
     'Monday': [1],
@@ -156,7 +156,6 @@ export const movieAPI = {
         console.error('Unexpected movies response format:', weekMovies);
         return [];
       }
-      console.log('Week movies:', weekMovies);
       if (!day) {
         return weekMovies;
       }
